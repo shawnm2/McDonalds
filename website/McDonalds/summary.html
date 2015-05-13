@@ -1,0 +1,165 @@
+<html>
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>McSummary</title>
+  <link href="chart.css" rel="stylesheet" type="text/css" />
+    
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
+	<script src="js/plugins.js"></script>
+	<script src="js/main.js"></script>
+	
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load('visualization', '1.1', {
+    'packages': ['bar']
+});
+google.setOnLoadCallback(drawStuff);
+
+function drawStuff() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Scenario');
+    data.addColumn('number', 'Sales');
+    data.addColumn('number', 'Incremental');
+	data.addColumn('number', 'Loss', 'purple');
+    data.addColumn('number', 'Payroll');
+    data.addColumn('number', 'Other Expenses');
+	data.addColumn('number', 'Taxes');
+	data.addColumn('number', 'Income');
+	//data.addColumn({type: 'string', role: 'style' });
+    data.addRows([
+        ['2014', 18169.30, 0, 0, 4756, 10532, 922.02,1959.28],
+        ['Scenario 1', 18169.30, 0, 0, 4735.71, 10532, 928.51,1973.08],
+        ['Scenario 2', 18169.30, 0, 0, 4756, 10532, 922.02, 1959.28],
+        ['Scenario 3', 18169.30, 0, 0, 7637.3, 10532, 0,0],
+		['Scenario 4', 18169.30, 0, -374.41, 8011.71, 10532, 0, 0],
+		['Scenario 4a', 18169.30, 374.41, 0, 8011.71, 10532, 0, 0],
+		['Scenario 5', 18169.30, 3255.71, 0, 8011.71, 10532, 922.02,1959.28],
+		['Scenario 6', 18169.30, 3866.32, 0, 8011.71, 10532, 1117.40,2374.50]
+    ]);
+
+    // Set chart options
+    var options = {
+        isStacked: true,
+        width: 800,
+        height: 600,
+        chart: {
+            title: 'Revenue, Expenses and Profits Comparison',
+            subtitle: '2014 vs Various Scenarios'
+        },
+        vAxis: {
+            viewWindow: {
+                min: -500,
+                max: 25000
+            }
+        },
+        series: {
+            3: {
+                targetAxisIndex: 1
+            },
+            4: {
+                targetAxisIndex: 1
+            },
+			5: {
+                targetAxisIndex: 1
+            },
+			6: {
+                targetAxisIndex: 1
+            }
+			
+        }
+    };
+
+    // Instantiate and draw our chart, passing in some options.
+    var chart = new google.charts.Bar(document.getElementById('content'));
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+	var button1 = document.getElementById('s1');
+	var button2 = document.getElementById('s2');
+	var button3 = document.getElementById('s3');
+	var button4 = document.getElementById('s4');
+	var button4a = document.getElementById('s4a');
+	var button5 = document.getElementById('s5');
+	var button6 = document.getElementById('s6');
+	button1.onclick = function() {
+	  //alert("I am an alert box!");
+	  var href = ("html/sc1_text.html");
+	  window.open(href, "Scenario Summary", 'width=500,height=700,scrollbars=no');
+    }
+	
+	button2.onclick = function() {
+      
+	  var href = ("html/sc2_text.html");
+	  window.open(href, "Scenario Summary", 'width=500,height=700,scrollbars=no');
+    }
+	button3.onclick = function() {
+	  var href = ("html/sc3_text.html");
+	  window.open(href, "Scenario Summary", 'width=500,height=700,scrollbars=no');
+	  
+    }
+	button4.onclick = function() {
+	  var href = ("html/sc4_text.html");
+	  window.open(href, "Scenario Summary", 'width=500,height=700,scrollbars=no');
+    }
+	button4a.onclick = function() {
+	  var href = ("html/sc4a_text.html");
+	  window.open(href, "Scenario Summary", 'width=500,height=700,scrollbars=no');
+    }
+	button5.onclick = function() {
+	  var href = ("html/sc5_text.html");
+	  window.open(href, "Scenario Summary", 'width=500,height=700,scrollbars=no');
+    }
+	button6.onclick = function() {
+	  var href = ("html/sc6_text.html");
+	  window.open(href, "Scenario Summary", 'width=500,height=700,scrollbars=no');
+    }
+};
+  </script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-62931013-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+  
+  </head>
+  <body>
+  	<div class="container">
+    <br><a href="index.php">Return to Main</a>
+    &nbsp; &nbsp; &nbsp;
+    <a href="scenarios.php">Back to Scenarios</a>
+  <div class="sidebar1">
+  	<br>
+    <h3>Summary</h3>
+    <p> Executive pay has a negligible impact on the overall picture. </p>
+    <p> Any significant increase in pay will have an equal impact on the price of food. </p>
+    <p> A $15/hr wage would raise the price's by 21.28%. </p>
+    <p> More to explore: Is fast food a <a href="http://en.wikipedia.org/wiki/Perfect_competition">perfect competion</a> Market? 
+    Is McDonald's a <a href="http://en.wikipedia.org/wiki/Market_power">price taker</a> or a price maker? Could it survive at higher prices?
+    How many jobs would be affected by a significant price increase?  
+    </p>
+    
+    <hr>
+    <p>In his classic Fast Food Nation (2001), Eric Schlosser describes the industry&#39;s manic pursuit of standardization. The machines that do the cooking are foolproof, virtually no skills are required. Jobs that have been de-skilled can be filled cheaply, writes Schlosser. The need to retain any individual worker is greatly reduced by the ease with which he or she can be replaced.</p>
+
+    <!-- end .sidebar1 --></div>
+    <br><br>
+    <div id="content">
+    </div><!-- end content div - chart will populate here-->
+    <div id="buttons"> 
+    <input id="s1" type="button" class="button" value="Scenario1" style="margin-left:125px;">
+    <input id="s2" type="button" class="button" value="Scenario2">
+    <input id="s3" type="button" class="button" value="Scenario3">
+    <input id="s4" type="button" class="button" value="Scenario4">
+    <input id="s4a" type="button" class="button" value="Scenario4a">
+    <input id="s5" type="button" class="button" value="Scenario5">
+    
+    </div>
+    
+    </div>
+  </body>
+</html>
